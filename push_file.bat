@@ -3,11 +3,13 @@ setlocal enabledelayedexpansion
 
 echo.
 echo ==========================================================
-echo  ⬆️  UPLOAD TO ALL DEVICES BOXPHONE                          
+echo            UPLOAD TO ALL DEVICES BOXPHONE                          
 echo ----------------------------------------------------------
-echo  Upload file ke semua device simple gesss :D     
+echo      Upload file ke semua device simple gesss :D     
 echo ==========================================================
 echo                                           by Analyst Team
+echo.
+echo.
 echo.
 
 set /p FILE_TO_PUSH=Masukkan nama file yang akan diupload: 
@@ -29,11 +31,12 @@ for /f "skip=1 tokens=1" %%D in ('adb devices') do (
         echo.
         echo ► Device: %%D
         adb -s %%D push "%FILE_TO_PUSH%" "!DEST_PATH!"
-        echo 🔄 Scanning file so it appears in Gallery...
+        echo Scanning file so it appears in Gallery...
         adb -s %%D shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard/Download/!FILE_NAME!
     )
 )
 
 echo.
-echo ✅ Done. The file should now appear in the Gallery on all devices.
+echo.
+echo Done. File selesai diupload dan sudah ada di gallery di semua devices.
 pause
