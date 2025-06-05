@@ -29,7 +29,7 @@ echo ==== Mengupload file "%FILE_TO_PUSH%" ke semua android ====
 for /f "skip=1 tokens=1" %%D in ('adb devices') do (
     if not "%%D"=="offline" if not "%%D"=="unauthorized" if not "%%D"=="" (
         echo.
-        echo ► Device: %%D
+        echo Device: %%D
         adb -s %%D push "%FILE_TO_PUSH%" "!DEST_PATH!"
         echo Scanning file so it appears in Gallery...
         adb -s %%D shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard/Download/!FILE_NAME!
@@ -39,4 +39,5 @@ for /f "skip=1 tokens=1" %%D in ('adb devices') do (
 echo.
 echo.
 echo Done. File selesai diupload dan sudah ada di gallery di semua devices.
+echo.
 pause
